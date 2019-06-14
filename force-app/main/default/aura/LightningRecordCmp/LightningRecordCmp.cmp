@@ -1,0 +1,62 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    <aura:attribute name="record" type="Object" />
+    <aura:attribute name="account" type="Object" />
+    <aura:attribute name="recordError" type="String" />
+    <force:recordData aura:id="recordEditor"
+                      layoutType="FULL"
+                      recordId="{!v.recordId}"
+                      targetError="{!v.recordError}"
+                      targetRecord="{!v.record}"
+                      targetFields ="{!v.account}"
+                      mode="EDIT" />
+    
+    <!-- Display a lightning card with details about the record -->
+    <div class="Record Details"> 
+        <lightning:card iconName="standard:account" title="{!v.account.Name}" >
+            <div class="slds-p-horizontal--small">
+                <div class="slds-text-body_medium">
+                    <p>Account Number </p>
+                    <p class="slds-text-heading--small">
+                        <lightning:badge title="Account Number" label="{!v.account.AccountNumber}" /></p><br/>
+                    <p>Type </p>
+                    <p class="slds-text-body_small">
+                        <lightning:formattedText title="Type" value="{!v.account.Type}" /></p><br/>
+                    <p>Phone </p>
+                    <p class="slds-text-body_small">
+                        <lightning:formattedText title="Phone" value="{!v.account.Phone}" /></p><br/>
+                    <p>Ownership </p>
+                    <p class="slds-text-body_small">
+                        <lightning:formattedText title="Ownership" value="{!v.account.Ownership}" /></p><br/>
+                    <p>Industry </p>
+                    <p class="slds-text-body_small">
+                        <lightning:formattedText title="Industry" value="{!v.account.Industry}" /></p>
+                </div>
+            </div>
+        </lightning:card>
+    </div>
+    <br/>
+    
+    <iframe width="720" height="480" src="https://www.youtube.com/embed/XD0awb4rO68"></iframe>
+    
+    <!-- Display an editing form -->
+    <div class="Record Details">
+        <lightning:card iconName="action:edit" title="Edit Account">
+            <div class="slds-p-horizontal--small">
+                <div class="slds-text-body_medium">
+                    <lightning:input label="Account Name" value="{!v.account.Name}"/>
+                    <br/>
+                    <lightning:button label="Save Account" variant="brand" onclick="{!c.handleSaveRecord}" />
+                </div>
+            </div>
+        </lightning:card>
+    </div>
+    <br>
+    </br>
+    <!-- Display Lightning Data Service errors, if any -->
+    <aura:if isTrue="{!not(empty(v.recordError))}">
+        <div class="recordError">
+            {!v.recordError}</div>
+    </aura:if> 
+    
+    <!--Added-->
+</aura:component>
