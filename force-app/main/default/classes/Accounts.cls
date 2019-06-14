@@ -12,7 +12,6 @@ public class Accounts extends fflib_SObjectDomain {
     
      public class Constructor implements fflib_SObjectDomain.IConstructable {
         public fflib_SObjectDomain construct(List<sObject> sObjectList) {
-            System.debug('hey');
             return new Accounts(sObjectList);
         }
      }
